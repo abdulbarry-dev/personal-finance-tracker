@@ -1,0 +1,8 @@
+{
+  "/api/*": "/$1",
+  "/users/:id/transactions": "/transactions?userId=:id",
+  "/users/:id/budgets": "/budgets?userId=:id",
+  "/transactions/category/:category": "/transactions?category=:category",
+  "/categories/income": "/categories?type=income",
+  "/categories/expense": "/categories?type=expense"
+}

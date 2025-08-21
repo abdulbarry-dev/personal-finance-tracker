@@ -1,0 +1,116 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "demo@example.com",
+      "email": "demo@example.com",
+      "name": "Demo User",
+      "createdAt": "2025-08-21T00:00:00Z"
+    }
+  ],
+  "transactions": [
+    {
+      "id": 1,
+      "userId": 1,
+      "type": "expense",
+      "amount": 25.99,
+      "category": "Food",
+      "description": "Lunch at cafe",
+      "date": "2025-08-20",
+      "createdAt": "2025-08-20T12:30:00Z"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "type": "income",
+      "amount": 2500.00,
+      "category": "Salary",
+      "description": "Monthly salary",
+      "date": "2025-08-01",
+      "createdAt": "2025-08-01T09:00:00Z"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "type": "expense",
+      "amount": 89.99,
+      "category": "Utilities",
+      "description": "Internet bill",
+      "date": "2025-08-15",
+      "createdAt": "2025-08-15T14:20:00Z"
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "type": "expense",
+      "amount": 450.00,
+      "category": "Housing",
+      "description": "Monthly rent",
+      "date": "2025-08-01",
+      "createdAt": "2025-08-01T10:00:00Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Food",
+      "type": "expense",
+      "color": "#ef4444",
+      "icon": "🍽️"
+    },
+    {
+      "id": 2,
+      "name": "Transportation",
+      "type": "expense",
+      "color": "#3b82f6",
+      "icon": "🚗"
+    },
+    {
+      "id": 3,
+      "name": "Utilities",
+      "type": "expense",
+      "color": "#f59e0b",
+      "icon": "⚡"
+    },
+    {
+      "id": 4,
+      "name": "Housing",
+      "type": "expense",
+      "color": "#8b5cf6",
+      "icon": "🏠"
+    },
+    {
+      "id": 5,
+      "name": "Entertainment",
+      "type": "expense",
+      "color": "#ec4899",
+      "icon": "🎬"
+    },
+    {
+      "id": 6,
+      "name": "Salary",
+      "type": "income",
+      "color": "#10b981",
+      "icon": "💼"
+    },
+    {
+      "id": 7,
+      "name": "Freelance",
+      "type": "income",
+      "color": "#06b6d4",
+      "icon": "💻"
+    }
+  ],
+  "budgets": [
+    {
+      "id": 1,
+      "userId": 1,
+      "categoryId": 1,
+      "amount": 300.00,
+      "period": "monthly",
+      "startDate": "2025-08-01",
+      "endDate": "2025-08-31",
+      "createdAt": "2025-08-01T00:00:00Z"
+    }
+  ]
+}
