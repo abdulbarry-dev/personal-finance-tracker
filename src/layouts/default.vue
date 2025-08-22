@@ -33,9 +33,7 @@ This layout wraps all authenticated pages to provide consistent navigation
       <NavBar
         :user="currentUser"
         :sidebar-collapsed="isSidebarCollapsed"
-        :is-hidden="isNavbarHidden"
         @toggle-sidebar="toggleSidebar"
-        @toggle-navbar="toggleNavbar"
         @search="handleSearch"
         @profile-click="handleProfileClick"
         @notifications-click="handleNotificationsClick"
@@ -43,10 +41,7 @@ This layout wraps all authenticated pages to provide consistent navigation
       />
 
       <!-- Page Content - Scrollable Area -->
-      <main
-        class="flex-1 overflow-y-auto transition-all duration-300"
-        :class="{ 'pt-0': isNavbarHidden, 'pt-4': !isNavbarHidden }"
-      >
+      <main class="flex-1 overflow-y-auto">
         <div class="p-4 lg:p-6">
           <slot />
         </div>
@@ -70,7 +65,7 @@ This layout wraps all authenticated pages to provide consistent navigation
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, onMounted, onUnmounted, watch } from 'vue'
+import { ref, reactive, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 
 // Components
@@ -82,7 +77,6 @@ const router = useRouter()
 
 // Reactive data
 const isSidebarCollapsed = ref(false)
-const isNavbarHidden = ref(false)
 
 // Mock user data (TODO: Replace with actual store data)
 const currentUser = reactive({
@@ -102,10 +96,6 @@ const showMobileOverlay = computed(() => {
 // Methods
 const toggleSidebar = () => {
   isSidebarCollapsed.value = !isSidebarCollapsed.value
-}
-
-const toggleNavbar = () => {
-  isNavbarHidden.value = !isNavbarHidden.value
 }
 
 // Event handlers
@@ -128,37 +118,15 @@ const handleAddTransaction = () => {
 
 // Store sidebar state in localStorage
 onMounted(() => {
-  const savedSidebarState = localStorage.getItem('sidebarCollapsed')
-  if (savedSidebarState !== null) {
-    isSidebarCollapsed.value = JSON.parse(savedSidebarState)
+  const savedState = localStorage.getItem('sidebarCollapsed')
+  if (savedState !== null) {
+    isSidebarCollapsed.value = JSON.parse(savedState)
   }
-
-  const savedNavbarState = localStorage.getItem('navbarHidden')
-  if (savedNavbarState !== null) {
-    isNavbarHidden.value = JSON.parse(savedNavbarState)
-  }
-
-  // Keyboard shortcut: Ctrl/Cmd + H to toggle navbar
-  const handleKeydown = (e: KeyboardEvent) => {
-    if ((e.ctrlKey || e.metaKey) && e.key === 'h') {
-      e.preventDefault()
-      toggleNavbar()
-    }
-  }
-
-  document.addEventListener('keydown', handleKeydown)
-
-  onUnmounted(() => {
-    document.removeEventListener('keydown', handleKeydown)
-  })
 })
 
-// Watch for state changes and save to localStorage
-watch(isSidebarCollapsed, (newValue: boolean) => {
+// Watch for sidebar changes and save to localStorage
+import { watch } from 'vue'
+watch(isSidebarCollapsed, (newValue) => {
   localStorage.setItem('sidebarCollapsed', JSON.stringify(newValue))
-})
-
-watch(isNavbarHidden, (newValue: boolean) => {
-  localStorage.setItem('navbarHidden', JSON.stringify(newValue))
 })
 </script>
